@@ -1,16 +1,80 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <title>Days in a Year</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 40px;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      width: 300px;
+      margin: auto;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #3498db;
+      color: white;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #2980b9;
+    }
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+  </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
+
+<div class="container">
+  <h2>Check Days in a Year</h2>
+  <input type="number" id="yearInput" placeholder="Enter a year (1-9999)">
+  <button onclick="showDays()">Get Days</button>
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+  function daysOfAYear(year) {
+    if ((year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)) {
+      return 366;
+    }
+    return 365;
+  }
+
+  function showDays() {
+    const year = parseInt(document.getElementById("yearInput").value);
+    const resultDiv = document.getElementById("result");
+
+    if (isNaN(year) || year < 1 || year > 9999) {
+      resultDiv.textContent = "Please enter a valid year (1–9999).";
+      return;
+    }
+
+    const days = daysOfAYear(year);
+    resultDiv.textContent = `${year} has ${days} days.`;
+  }
 </script>
 
 </body>
-
 </html>
+
